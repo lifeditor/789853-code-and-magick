@@ -98,8 +98,13 @@ var fillWizardList = function () {
 };
 
 var setupColor = function (selector, arrays) {
-  var color = arrays[generateRandom(arrays.length)];
-  setupWizard.querySelector(selector).value = color;
+  var input = setupWizard.querySelector(selector);
+  var color;
+
+  do {
+    color = arrays[generateRandom(arrays.length)];
+  } while (input.value === color);
+  input.value = color;
   return color;
 };
 
@@ -171,5 +176,3 @@ userNameInput.addEventListener('input', function (evt) {
 });
 
 wizardList.appendChild(fillWizardList());
-// setupWizard.classList.remove(CSS_HIDDEN);
-// setupWizard.querySelector(CSS_PREFIX).classList.remove(CSS_HIDDEN);
